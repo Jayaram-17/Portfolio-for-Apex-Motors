@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX MOTORS | Car Modification Portfolio</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. BASIC SETTINGS (VARIABLES) --- */
+        :root {
+            --primary-color: #ff3333; /* Bright Red */
+            --bg-dark: #121212;       /* Almost Black */
+            --bg-card: #1e1e1e;       /* Dark Grey */
+            --text-white: #ffffff;
+            --text-gray: #aaaaaa;
+        }
+
+        /* Reset default browser settings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif; /* Bold, blocky font for titles */
+            text-transform: uppercase;
+        }
+
+        img {
+            width: 100%; /* Makes images responsive */
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 2. UTILITY CLASSES (Helpers) --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto; /* Centers content */
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .section-title span {
+            color: var(--primary-color);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* --- 3. NAVIGATION --- */
+        header {
+            background-color: #000;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+        
+        .logo span { color: var(--primary-color); }
+
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { font-weight: bold; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- 4. HERO SECTION (Main Image) --- */
+        #hero {
+            /* Background Image Set Here */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/carhero/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 80vh; /* Takes up 80% of screen height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: none;
+        }
+
+        #hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        #hero p { font-size: 1.2rem; color: #ddd; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- 5. ABOUT SECTION (Text Only) --- */
+        #about { text-align: center; }
+        .about-text { max-width: 700px; margin: 0 auto; }
+        .about-text p { color: var(--text-gray); margin-bottom: 20px; }
+
+        /* --- 6. SERVICES (Simple Cards) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive Grid */
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .service-card h3 { margin: 15px 0 10px; }
+        .service-card p { color: var(--text-gray); font-size: 0.9rem; }
+
+        /* --- 7. PORTFOLIO (Only 3 Images) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .project-card img {
+            height: 250px;
+            object-fit: cover; /* Prevents image stretching */
+        }
+
+        .project-info { padding: 20px; }
+        .project-info h3 { font-size: 1.2rem; }
+        .project-info span { color: var(--primary-color); font-size: 0.8rem; text-transform: uppercase; }
+
+        /* --- 8. CONTACT --- */
+        .contact-container {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        form { max-width: 500px; margin: 30px auto 0; display: flex; flex-direction: column; gap: 15px; }
+        
+        input, textarea {
+            padding: 15px;
+            background-color: #121212;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        textarea { resize: vertical; height: 120px; }
+
+        /* --- 9. MOBILE RESPONSIVENESS --- */
+       @media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    #hero {
+        height: auto;
+        padding: 100px 0;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">APEX <span>MOTORS</span></a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                   
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <!-- 1 IMAGE USED HERE -->
+    <section id="hero">
+        <div class="container">
+            <h1>Build Your Dream Car</h1>
+            <p>We specialize in custom tuning, body kits, and performance upgrades. Turn your vehicle into a masterpiece.</p>
+            <a href="#portfolio" class="btn">See Our Work</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <!-- NO IMAGES HERE (Simplified) -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <span>WHO WE ARE</span>
+                <h2>Performance First</h2>
+            </div>
+            <div class="about-text">
+                <p>We are a passionate team of car enthusiasts dedicated to modifying vehicles to their full potential. Whether you want more speed, a better look, or a custom sound system, we have the tools and expertise to make it happen.</p>
+                <p>Based in California, we have been serving the car community for over 10 years with a focus on quality and reliability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <span>WHAT WE DO</span>
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>⚙️ Engine Tuning</h3>
+                    <p>Unlock horsepower with our ECU remapping and turbo upgrades.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🎨 Body Kits</h3>
+                    <p>Custom wide-body kits, spoilers, and paint correction.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🔊 Audio Systems</h3>
+                    <p>Professional installation of subwoofers, amps, and speakers.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🛞 Suspension</h3>
+                    <p>Coilovers and air-ride suspension for the perfect stance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <!-- 3 IMAGES USED HERE -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <span>RECENT BUILDS</span>
+                <h2>Featured Cars</h2>
+            </div>
+            <div class="portfolio-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/30599330/pexels-photo-30599330.png" alt="Red Sports Car">
+                    <div class="project-info">
+                        <span>Tuning</span>
+                        <h3>Nissan GT-R R35</h3>
+                    </div>
+                </div>
+
+                
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/14300380/pexels-photo-14300380.jpeg" alt="Blue BMW">
+                    <div class="project-info">
+                        <span>Stance</span>
+                        <h3>BMW M3 Comp</h3>
+                    </div>
+                </div>
+
+                
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/12882894/pexels-photo-12882894.jpeg" alt="Yellow Supercar">
+                    <div class="project-info">
+                        <span>Aero</span>
+                        <h3>Lamborghini Huracan</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+ 
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <span>GET IN TOUCH</span>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <p>Ready to start your build? Send us a message and we will get back to you.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Message Sent!');">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Tell us about your car..." required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 20px; color: #555; font-size: 0.8rem;">
+        <p>&copy; 2025 Apex Motors. jr Portfolio.</p>
+    </footer>
+
+</body>
+</html>
